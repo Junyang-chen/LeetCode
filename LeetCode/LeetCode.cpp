@@ -127,5 +127,51 @@ std::vector<double> LeetCode::minSort(std::vector<double> &vec) {
 }
 
 std::vector<double> LeetCode::mergeSort(std::vector<double> & vec) {
+	if (vec.size() <= 1)
+		return vec;
+	mergeSortHelper(vec, 0, vec.size());
+	return vec;
+}
 
+void LeetCode::mergeSortHelper(std::vector<double> & vec, int start, int end) {
+	int mid = (end - start) / 2;
+	if (start < end)
+	{
+		mergeSortHelper(vec, start, mid);
+		mergeSortHelper(vec, mid + 1, end);
+		merge(vec, start, mid, end);
+	}
+}
+
+void LeetCode::merge(std::vector<double> & vec, int start, int mid, int end) {
+	int n1 = mid - start+1;
+	int n2 = end - mid;
+	auto list1 = std::vector<double>(), list2 = std::vector<double>();
+	for (int i = 0; i < n1; ++i)
+		list1.push_back(vec[start + i]);
+	for (int i = 0; i < n2; ++i)
+		list2.push_back(vec[mid + i+1]);
+	int i = 0, j = 0, k = 0;
+	while (i < n1 && j<n2) {
+		if (list1[i] > list2[j]) {
+			vec[start + k] = list2[j];
+			++j;
+		}
+		else
+		{
+			vec[start + k] = list1[i];
+			++i;
+		}
+		++k;
+	}
+	while (i < n1) {
+		vec[start + k] = list1[i];
+		++k;
+		++i;
+	}
+	while (j < n2) {
+		vec[start + k] = list2[j];
+		++k;
+		++j;
+	}
 }

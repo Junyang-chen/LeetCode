@@ -21,4 +21,6 @@ public:
 	static std::vector<double> minSort(std::vector<double> &);
 	// merge sort
 	static std::vector<double> mergeSort(std::vector<double> &);
+	static void mergeSortHelper(std::vector<double> & vec, int start, int end);
+	static void merge(std::vector<double> & vec, int start, int mid, int end);
 };

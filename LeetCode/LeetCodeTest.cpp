@@ -55,7 +55,8 @@ BOOST_AUTO_TEST_CASE(twoSum)
 BOOST_AUTO_TEST_CASE(sort)
 {
 	vector<boost::shared_ptr<vector<double>(*)(vector<double> &)>> funcvec{ boost::make_shared<vector<double>(*)(vector<double> &)>(LeetCode::minSort),
-		boost::make_shared<vector<double>(*)(vector<double> &)>(LeetCode::insertionSort)};
+		boost::make_shared<vector<double>(*)(vector<double> &)>(LeetCode::insertionSort),
+		boost::make_shared<vector<double>(*)(vector<double>&)>(LeetCode::mergeSort)};
 	//funcvec.push_back(boost::make_shared<vector<double>(*)(vector<double> &)>(LeetCode::insertionSort));
 
 	for (auto itr = funcvec.begin(); itr != funcvec.end(); ++itr) {
