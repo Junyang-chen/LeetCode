@@ -15,6 +15,8 @@ public:
 	// https://leetcode.com/problems/two-sum/#/description
 	static std::vector<int> twoSum(const std::vector<int>& nums, int target);
 
+	//https://leetcode.com/problems/longest-substring-without-repeating-characters/#/description
+	static int lengthOfLongestSubstring(string s);
 	// insertion sort
 	static std::vector<double> insertionSort(std::vector<double> &);
 	// min sort

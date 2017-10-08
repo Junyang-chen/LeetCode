@@ -31,7 +31,6 @@ BOOST_AUTO_TEST_CASE(regularstringmatching)
 
 	
 	//BOOST_CHECK_EQUAL(add(2, 2), 4);	  // #7 continues on error
-	system("pause");
 }
 
 BOOST_AUTO_TEST_CASE(twoSum)
@@ -58,8 +57,10 @@ BOOST_AUTO_TEST_CASE(sort)
 		boost::make_shared<vector<double>(*)(vector<double> &)>(LeetCode::insertionSort),
 		boost::make_shared<vector<double>(*)(vector<double>&)>(LeetCode::mergeSort)};
 	//funcvec.push_back(boost::make_shared<vector<double>(*)(vector<double> &)>(LeetCode::insertionSort));
+	vector<string> func_name{ "minSort", "insertionSort", "mergeSort" };
 
 	for (auto itr = funcvec.begin(); itr != funcvec.end(); ++itr) {
+		cout << "Start to test func " << func_name[itr - funcvec.begin()] << endl;
 		auto vec = vector<double>{ 0 };
 		auto expectResult = vector<double>(vec);
 		auto result = (**itr)(vec);
@@ -81,7 +82,25 @@ BOOST_AUTO_TEST_CASE(sort)
 		BOOST_CHECK_EQUAL_COLLECTIONS(result.begin(), result.end(), expectResult.begin(), expectResult.end());
 
 	}
-	int temp;
-	std::cin >> temp;
 }
+
+BOOST_AUTO_TEST_CASE(longest_substring)
+{
+	vector<boost::shared_ptr<int(*)(string)>> funcvec{ boost::make_shared<int(*)(string)>(LeetCode::lengthOfLongestSubstring)};
+	//funcvec.push_back(boost::make_shared<vector<double>(*)(vector<double> &)>(LeetCode::insertionSort));
+	vector<string> func_name{ "lengthOfLongestSubstring"};
+
+	for (auto itr = funcvec.begin(); itr != funcvec.end(); ++itr) {
+		cout << "Start to test func " << func_name[itr - funcvec.begin()] << endl;
+		auto inputs = vector<string>{ "abcabcbb", "bbbbb", "pwwkew", "au", "abba"};
+		auto results = vector<int>{ 3,1,3,2,2 };
+		for (int i = 0; i < inputs.size(); ++i) {
+			cout << inputs[i] << " should be " << results[i] << endl;
+			BOOST_CHECK_EQUAL((**itr)(inputs[i]), results[i]);
+		}
+	}
+	system("pause");
+}
+
+
 BOOST_AUTO_TEST_SUITE_END()
